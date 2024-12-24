@@ -3,7 +3,7 @@ Contributors: palscode
 Author link: https://hasthemes.com/74ku
 Tags:converter, currency, currency switcher, switcher woocommerce, multicurrency, wc currency
 Requires at least: 4.4
-Tested up to: 6.4
+Tested up to: 6.7
 Requires PHP: 5.6
 Stable tag: 1.5.6
 License: GPLv2 or later
