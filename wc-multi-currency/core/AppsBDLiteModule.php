@@ -12,6 +12,7 @@
 			public $menuTitle = "";
 			public $menuIcon = "";
 			public $pluginBaseName;
+			public $_base_path;
 			public $pluginFile;
 			protected $options;
 			public $kernelObject;
@@ -450,7 +451,7 @@
 				$modulename    = get_class( $this );
 				$this->options = get_option( $this->pluginBaseName . "_o_" . $modulename, NULL );
 			}
-			
+
 			function GetOption( $key = '', $default = '' ) {
 				if ( empty( $key ) ) {
 					return $this->options;
@@ -536,16 +537,19 @@
 				$this->AddAdminAjaxAction( 'data', [ $this, 'data' ] );
 				$this->AddAdminAjaxAction( 'confirm', [ $this, 'confirm' ] );
 			}
+			function escHtmlInput($html) {
+				$safe_text = wp_check_invalid_utf8( $html );
+				return strip_tags($safe_text, '<h1><h2><h3><h4><strong><b><span><ol><ul><u><font><li><table><tr><img><br><pre><div><td><th><tbody><thead><tfoot><hr><p><a><iframe><figure><figcaption><video>');
+			}
 			public function AjaxRequestCallback() {
 				$response   = new AppsbdAjaxConfirmResponse();
 				$beforeSave = $this->options;
 				foreach ( $_POST as $key=>$value ) {
-                    $key=sanitize_key($key);
 				    if($key=="action"){
 				        continue;
                     }
 
-					$this->options[$key]=!in_array($key,$this->HTMLInputFields)?sanitize_text_field($value):wp_kses_html($value);
+					$this->options[$key]=is_array($value)?($value):(!in_array($key,$this->HTMLInputFields)?sanitize_text_field($value):$this->escHtmlInput($value));
 				}
 				if ( $beforeSave === $this->options ) {
 					$response->DisplayWithResponse( false, $this->__( "No change for update" ) );

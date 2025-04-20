@@ -3,11 +3,13 @@
 * Plugin Name: Multi Currency for WooCommerce
 * Plugin URI: https://palscode.com
 * Description: Multi Currency for WooCommerce is a prominent currency switcher plugin for WooCommerce. This plugin allows your website or online store visitors to switch to their preferred currency or their country's currency. WC Multi-Currency has the option to select currencies that you want to enable on your online store. Currency rates can be set automatically or manually.
-* Version: 1.5.6
+* Version: 1.5.7
 * Author: palscode
 * Author URI: https://palscode.com
 * Slug: wc-multi-currency
+* Tested up to: 6.8
 * WC requires at least: 3.3
+* WC tested up to: 9.8.1
 */
 
 
@@ -18,10 +20,15 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' )  && !is_plugin_active( 'm
 	include_once 'core/helper_lite.php';
 	include_once 'appcore/plugin_helper.php';
 	include_once 'appcore/APBDWooComMultiCurrency.php';
-	$appwoomc=new APBDWooComMultiCurrency(__FILE__,"1.5.6");
-
-
+	$appwoomc=new APBDWooComMultiCurrency(__FILE__,"1.5.7");
 	$appwoomc->StartPlugin();
+
+	// Compatible With WooCommerce Custom Order Tables
+	add_action( 'before_woocommerce_init', function() {
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	} );
 }else{
 	add_action( 'admin_notices',function (){
 		?>

@@ -324,7 +324,7 @@ if ( ! function_exists('getCurrencyCountryRow'))
             <td>
                 <h6 class="title"><?php $app->_e("Countries"); ?></h6>
                 <div class="">
-                    <select class="select-position countries-container apbd-app-multi-select" name="currency_location[<?php echo esc_attr($currencyData->id); ?>][]" multiple>
+                    <select class="select-position countries-container apbd-app-multi-select" name="currency_location[<?php echo esc_attr($currencyData->id); ?>][]" multiple="multiple" data-selectedvalue="<?php echo implode(",",$selected); ?>">
 						<?php foreach ( $countries as $ccode=>$country ) {
 							?>
                             <option value="<?php echo esc_attr($ccode); ?>" <?php echo esc_attr(in_array($ccode,$selected)?' selected ="selected" ':""); ?>><?php echo esc_attr($country); ?></option>

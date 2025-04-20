@@ -3,9 +3,9 @@ Contributors: palscode
 Author link: https://hasthemes.com/74ku
 Tags:converter, currency, currency switcher, switcher woocommerce, multicurrency, wc currency
 Requires at least: 4.4
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,10 +53,15 @@ If allowed unlimited currency.
 
 
 == Changelog ==
+= 1.5.7 =
+ * Added WooCommerce Custom Order Tables compatibility
+ * Fixed select2 multi select issue with location
+ * Compatibility With WordPress Latest Version.
+ * Compatibility With WooCommerce Latest Version.
 = 1.5.5 =
  * Fixed some minor issues
 = 1.5.2 =
- * Tested on letest version, no issues founds
+ * Tested on latest version, no issues founds
 = 1.4 =
  * Added WooCommerce Report based on currency
 = 1.3 =

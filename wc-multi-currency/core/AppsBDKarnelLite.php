@@ -190,13 +190,15 @@ if(!class_exists("AppsBDKarnelLite")) {
 			self::$_instence_base[ $this->pluginSlugName ] = &self::$_instence[ get_class( $this ) ];
 			spl_autoload_register( array( $this, "_myautoload_method" ) );
 			$this->pluginSlugWitoutChar =strtoupper(preg_replace('/[^a-zA-Z]/','',$this->pluginSlugName));
-			$this->AddAppGlobalVar( "yesText", "Yes" );
-			$this->AddAppGlobalVar( "noText", "No" );
-			$this->AddAppGlobalVar( "okText", "Ok" );
-			$this->AddAppGlobalVar( "Loading", "Loading" );
-			$this->AddAppGlobalVar( "bs_noneResultsText", "No Results matched {0}" );
-			$this->AddAppGlobalVar( "bs_noneSelectedText", "Nothing selected" );
-			$this->AddAppGlobalVar( "bs_seaching", "Searching.." );
+			add_action('init', function() {
+				$this->AddAppGlobalVar( "yesText", "Yes" );
+				$this->AddAppGlobalVar( "noText", "No" );
+				$this->AddAppGlobalVar( "okText", "Ok" );
+				$this->AddAppGlobalVar( "Loading", "Loading" );
+				$this->AddAppGlobalVar( "bs_noneResultsText", "No Results matched {0}" );
+				$this->AddAppGlobalVar( "bs_noneSelectedText", "Nothing selected" );
+				$this->AddAppGlobalVar( "bs_seaching", "Searching.." );
+			});
 			$this->_set_action_prefix = $this->pluginSlugName;
 			$this->menuTitle=$this->pluginName;
 			$this->initialize();

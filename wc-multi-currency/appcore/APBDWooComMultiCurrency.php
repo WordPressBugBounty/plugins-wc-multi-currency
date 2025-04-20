@@ -10,7 +10,6 @@ class APBDWooComMultiCurrency extends AppsBDKarnelLite {
 	function __construct( $pluginBaseFile, $version = '1.0.0' ) {
 		$this->pluginFile     = $pluginBaseFile;
 		$this->pluginSlugName = 'wc-multi-currency';
-		$this->pluginName     = $this->__('Multi Currency for WooCommerce');
 		$this->pluginVersion  = $version;
 		parent::__construct($pluginBaseFile,$version);
 		$this->setMenuTitle("Multi Currency");
@@ -21,12 +20,15 @@ class APBDWooComMultiCurrency extends AppsBDKarnelLite {
 		$this->SetPluginIconClass("ap ap-elite-licenser","dashicons-wc-multi-currency");
 		$this->setSetActionPrefix("woocommultic");
 		
-		$this->AddLiteModule("APBDWMC_general");
-		$this->AddLiteModule("APBDWMC_location");
-		$this->AddLiteModule("APBDWMC_payment_currency");
-		$this->AddLiteModule("APBDWMC_design");
-		$this->AddLiteModule("APBDWMC_instruction");
-		$this->AddLiteModule("APBDWMC_recommended");
+		add_action('init', function() {
+			$this->pluginName     = $this->__('Multi Currency for WooCommerce');
+			$this->AddLiteModule("APBDWMC_general");
+			$this->AddLiteModule("APBDWMC_location");
+			$this->AddLiteModule("APBDWMC_payment_currency");
+			$this->AddLiteModule("APBDWMC_design");
+			$this->AddLiteModule("APBDWMC_instruction");
+			$this->AddLiteModule("APBDWMC_recommended");
+		});
 		add_action( 'admin_notices', array( $this, 'cachePluginAdminNote' ) );
 		
 	}

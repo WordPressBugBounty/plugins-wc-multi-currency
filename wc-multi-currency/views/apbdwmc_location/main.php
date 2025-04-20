@@ -27,7 +27,7 @@
                         <label for="ht-is-enable" class="mr-3 text-bold"><?php $this->_e("Enable") ; ?></label>
                         <div class="ht-mcs-switcher-wrap inline">
                             <div class="ht-mcs-switcher">
-                                <input name="isEnable" id="ht-is-enable" <?php echo esc_attr($this->GetOption("isEnable","N")=="Y"?" checked ":""); ?>value="Y" type="checkbox">
+                            <input name="isEnable" id="ht-is-enable" <?php echo $this->GetOption("isEnable","N")=="Y"?" checked ":"" ?>value="Y" type="checkbox">
                                 <label for="ht-is-enable">Off</label>
                             </div>
                         </div>
